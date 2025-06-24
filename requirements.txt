@@ -1,0 +1,4 @@
+fonttools
+requests
+py7zr
+wget 

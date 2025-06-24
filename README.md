@@ -1,25 +1,23 @@
 # 介绍
 
-本项目代码原用于，将更纱黑体的信息改为微软雅黑和宋体的，来替换 Windows 系统的默认字体。
+本项目通过自动化脚本，获取最新版本的 [更纱黑体 SC](https://gitee.com/lxgw/sarasa-gothic-sc-regular) 字体，并将其中的字体信息修改为"微软雅黑"和"宋体"，以便在 Windows 系统中作为替换字体使用，从而获得更佳的显示效果。
 
-现在改为，通过更纱黑体的源码，将思源黑体和 Segoe UI 结合为微软雅黑和宋体。
+# 环境准备
 
-该字体主要是使用了更纱黑体的 Hint 机制，能够提供更锐利的显示效果。
+1.  **Python**: 项目基于 Python 3 编写。
+2.  **FontForge**: 字体处理依赖 FontForge。请从 [FontForge 官网](https://fontforge.org/en-US/) 下载并安装。
+    - 在 Windows 环境下，安装后需要知道 `ffpython.exe` 的完整路径（例如 `C:\Program Files (x86)\FontForgeBuilds\bin\ffpython.exe`），并将其填写到 `auto_all.py` 脚本顶部的 `FFPYTHON_PATH` 变量中。
+3.  **Python 依赖**: 在项目根目录下，使用标准 Python 环境执行以下命令来安装所需依赖库：
+    ```shell
+    pip install -r requirements.txt
+    ```
 
-# 构建流程
+# 如何运行
 
-1. 参考原版微软雅黑，移除 Segoe UI 中大多数 OpenType 特性；
-
-2. 将 Segoe UI 伪装成 Inter 字体，替换更纱黑体项目的源字体；
-
-3. 修改更纱黑体源码，保留 Segoe UI 中的 Hinting；
-
-4. 执行更纱黑体的构建流程，得到构建出的更纱黑体；
-
-5. 修改更纱黑体字体信息，伪装成微软雅黑和宋体。
-
-# 接下来
-
-1. 编写更加自动化的代码，而不是靠手搓；
-
-2. 能够实现输入任意中文字体和拉丁字体，构建出包含 Hinting 的合成字体。
+1.  确保已完成上述环境准备。
+2.  如果是在 Windows 上，请确认 `auto_all.py` 中的 `FFPYTHON_PATH` 变量已设置为您机器上正确的路径。
+3.  使用 **标准 Python 解释器** (而不是 `ffpython`) 运行主脚本：
+    ```shell
+    python auto_all.py
+    ```
+4.  脚本执行完毕后，生成的所有字体文件将会位于 `result` 文件夹内。
